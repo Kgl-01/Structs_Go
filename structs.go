@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 	"time"
 )
 
@@ -14,11 +15,18 @@ type user struct {
 }
 
 func main() {
-	firstName := readUserInput("Please enter your first name: ")
-	lastName := readUserInput("Please enter your last name: ")
-	birthDate := readUserInput("Please enter your birthdate (DD/MM/YYYY): ")
+	userFirstName := readUserInput("Please enter your first name: ")
+	userLastName := readUserInput("Please enter your last name: ")
+	userBirthDate := readUserInput("Please enter your birthdate (DD/MM/YYYY): ")
+	userAge := readUserInput("Please enter your age: ")
 
-	fmt.Println(firstName, lastName, birthDate)
+	parsedUserAge, _ := strconv.Atoi(userAge)
+
+	var appUser user
+
+	appUser = user{firstName: userFirstName, lastName: userLastName, birthDate: userBirthDate, age: parsedUserAge, createdAt: time.Now()}
+
+	fmt.Print(appUser)
 }
 
 func readUserInput(promptText string) string {
