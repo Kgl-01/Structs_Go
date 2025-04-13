@@ -17,6 +17,10 @@ type user struct {
 func (u user) outputUserDetails() {
 	fmt.Println(u.firstName, u.lastName, u.birthDate, u.createdAt)
 }
+func (u *user) clearUserName() {
+	u.firstName = ""
+	u.lastName = ""
+}
 
 func main() {
 	userFirstName := readUserInput("Please enter your first name: ")
@@ -31,6 +35,8 @@ func main() {
 	appUser = user{firstName: userFirstName, lastName: userLastName, birthDate: userBirthDate, age: parsedUserAge, createdAt: time.Now()}
 
 	// fmt.Print(appUser)
+	appUser.outputUserDetails()
+	appUser.clearUserName()
 	appUser.outputUserDetails()
 }
 
