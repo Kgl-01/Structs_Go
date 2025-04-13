@@ -29,6 +29,10 @@ func main() {
 	fmt.Print(appUser)
 }
 
+func outputUserDetails(u user) {
+	fmt.Println(u.firstName, u.lastName, u.birthDate, u.createdAt)
+}
+
 func readUserInput(promptText string) string {
 	fmt.Print(promptText)
 	var value string
