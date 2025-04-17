@@ -43,7 +43,7 @@ func main() {
 
 	parsedUserAge, _ := strconv.Atoi(userAge)
 
-	var appUser user
+	var appUser *user
 
 	appUser = newUser(userFirstName, userLastName, userBirthDate, parsedUserAge)
 
