@@ -14,6 +14,19 @@ type user struct {
 	createdAt time.Time
 }
 
+func newUser(firstName string, lastName string, birthDate string, age int) *user {
+
+	appUser := &user{
+		firstName: firstName,
+		lastName:  lastName,
+		birthDate: birthDate,
+		age:       age,
+		createdAt: time.Now(),
+	}
+
+	return appUser
+}
+
 func (u user) outputUserDetails() {
 	fmt.Println(u.firstName, u.lastName, u.birthDate, u.createdAt)
 }
@@ -32,7 +45,7 @@ func main() {
 
 	var appUser user
 
-	appUser = user{firstName: userFirstName, lastName: userLastName, birthDate: userBirthDate, age: parsedUserAge, createdAt: time.Now()}
+	appUser = newUser(userFirstName, userLastName, userBirthDate, parsedUserAge)
 
 	// fmt.Print(appUser)
 	appUser.outputUserDetails()
