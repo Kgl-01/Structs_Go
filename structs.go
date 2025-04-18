@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"strconv"
 	"time"
@@ -14,7 +15,11 @@ type user struct {
 	createdAt time.Time
 }
 
-func newUser(firstName string, lastName string, birthDate string, age int) *user {
+func newUser(firstName string, lastName string, birthDate string, age int) (*user, error) {
+
+	if firstName == "" || lastName == "" || birthDate == "" {
+		return nil, errors.New("firstName, lastName and birthDate is missing")
+	}
 
 	appUser := &user{
 		firstName: firstName,
@@ -24,7 +29,7 @@ func newUser(firstName string, lastName string, birthDate string, age int) *user
 		createdAt: time.Now(),
 	}
 
-	return appUser
+	return appUser, nil
 }
 
 func (u user) outputUserDetails() {
@@ -45,17 +50,22 @@ func main() {
 
 	var appUser *user
 
-	appUser = newUser(userFirstName, userLastName, userBirthDate, parsedUserAge)
+	appUser, err := newUser(userFirstName, userLastName, userBirthDate, parsedUserAge)
 
-	// fmt.Print(appUser)
-	appUser.outputUserDetails()
-	appUser.clearUserName()
-	appUser.outputUserDetails()
+	if err != nil {
+		// fmt.Print(appUser)
+		appUser.outputUserDetails()
+		// appUser.clearUserName()
+		// appUser.outputUserDetails()
+		return
+	} else {
+		fmt.Println(err)
+	}
 }
 
 func readUserInput(promptText string) string {
 	fmt.Print(promptText)
 	var value string
-	fmt.Scan(&value)
+	fmt.Scanln(&value)
 	return value
 }
