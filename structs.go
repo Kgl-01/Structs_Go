@@ -17,7 +17,7 @@ func main() {
 
 	appUser, err := user.NewUser(userFirstName, userLastName, userBirthDate, parsedUserAge)
 
-	if err != nil {
+	if err == nil {
 		// fmt.Print(appUser)
 		appUser.OutputUserDetails()
 		appUser.ClearUserName()
