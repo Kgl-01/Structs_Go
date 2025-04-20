@@ -19,9 +19,11 @@ func main() {
 
 	if err == nil {
 		// fmt.Print(appUser)
+		admin := user.NewAdmin("karthik.gowda@consilio.com", "143.Amma")
+		admin.OutputUserDetails()
+		// appUser.OutputUserDetails()
+		// appUser.ClearUserName()
 		appUser.OutputUserDetails()
-		appUser.ClearUserName()
-		// appUser.outputUserDetails()
 		return
 	} else {
 		fmt.Println(err)
